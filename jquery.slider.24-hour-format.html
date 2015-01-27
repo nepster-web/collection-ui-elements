@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQUERY Slider, 24 часовой формат</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui-1.11.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet"  href="jquery/jquery-ui-1.11.2/jquery-ui.min.css" type="text/css" />
+    <style>
+        #delivery-time {
+            font-size: 18px;
+            clear: both;
+            padding-left: 15%;
+            padding-right: 15%;
+        }
+        #delivery-time .left {
+            float:left;
+        }
+        #delivery-time .right {
+            float:right;
+        }
+        #delivery-time-range {
+            clear: both;
+            margin-top: 15px;
+            margin-bottom: 25px;
+        }
+        .delkup strong {
+            text-transform: capitalize;
+        }
+        /* Слайдер */
+        .ui-slider-horizontal {
+            height: 8px;
+            background: #D7D7D7;
+            border: 1px solid #BABABA;
+            box-shadow: 0 1px 0 #FFF, 0 1px 0 #CFCFCF inset;
+            clear: both;
+            margin: 8px 0;
+            -webkit-border-radius: 6px;
+            -moz-border-radius: 6px;
+            -ms-border-radius: 6px;
+            -o-border-radius: 6px;
+            border-radius: 6px;
+        }
+        .ui-slider {
+            position: relative;
+            text-align: left;
+        }
+        .ui-slider-horizontal .ui-slider-range {
+            top: -1px;
+            height: 100%;
+        }
+        .ui-slider .ui-slider-range {
+            position: absolute;
+            z-index: 1;
+            height: 8px;
+            font-size: .7em;
+            display: block;
+            border: 1px solid #5BA8E1;
+            box-shadow: 0 1px 0 #AAD6F6 inset;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            -khtml-border-radius: 6px;
+            border-radius: 6px;
+            background: #81B8F3;
+            background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+            background-size: 100%;
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #A0D4F5), color-stop(100%, #81B8F3));
+            background-image: -webkit-linear-gradient(top, #A0D4F5, #81B8F3);
+            background-image: -moz-linear-gradient(top, #A0D4F5, #81B8F3);
+            background-image: -o-linear-gradient(top, #A0D4F5, #81B8F3);
+            background-image: linear-gradient(top, #A0D4F5, #81B8F3);
+        }
+        .ui-slider .ui-slider-handle {
+            border-radius: 50%;
+            background: #F9FBFA;
+            background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgi…pZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+            background-size: 100%;
+            background-image: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(0%, #C7CED6), color-stop(100%, #F9FBFA));
+            background-image: -webkit-linear-gradient(top, #C7CED6, #F9FBFA);
+            background-image: -moz-linear-gradient(top, #C7CED6, #F9FBFA);
+            background-image: -o-linear-gradient(top, #C7CED6, #F9FBFA);
+            background-image: linear-gradient(top, #C7CED6, #F9FBFA);
+            width: 22px;
+            height: 22px;
+            -webkit-box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6), 0 -1px 0 1px rgba(0, 0, 0, 0.15) inset, 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+            -moz-box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6), 0 -1px 0 1px rgba(0, 0, 0, 0.15) inset, 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+            box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.6), 0 -1px 0 1px rgba(0, 0, 0, 0.15) inset, 0 1px 0 1px rgba(255, 255, 255, 0.9) inset;
+            -webkit-transition: box-shadow .3s;
+            -moz-transition: box-shadow .3s;
+            -o-transition: box-shadow .3s;
+            transition: box-shadow .3s;
+        }
+        .ui-slider .ui-slider-handle {
+            position: absolute;
+            z-index: 2;
+            width: 22px;
+            height: 22px;
+            cursor: default;
+            border: none;
+            cursor: pointer;
+        }
+        .ui-slider .ui-slider-handle:after {
+            content:"";
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            top: 50%;
+            margin-top: -4px;
+            left: 50%;
+            margin-left: -4px;
+            background: #30A2D2;
+            -webkit-box-shadow: 0 1px 1px 1px rgba(22, 73, 163, 0.7) inset, 0 1px 0 0 #FFF;
+            -moz-box-shadow: 0 1px 1px 1px rgba(22, 73, 163, 0.7) inset, 0 1px 0 0 white;
+            box-shadow: 0 1px 1px 1px rgba(22, 73, 163, 0.7) inset, 0 1px 0 0 #FFF;
+        }
+        .ui-slider-horizontal .ui-slider-handle {
+            top: -.5em;
+            margin-left: -.6em;
+        }
+        .ui-slider a:focus {
+            outline:none;
+        }
+    </style>
+</head>
+<body>
+<div id="delivery-time">
+    <div class="left">с <span></span></div>
+    <div class="right">до <span></span></div>
+</div>
+<div class="clearfix"></div>
+<div id="delivery-time-range"></div>
+<h3>Установить время:</h3>
+<button data-time="00:00-23:59">00:00-23:59</button>
+<button data-time="00:01-20:01">00:01-20:01</button>
+<button data-time="00:05-20:00">00:05-20:00</button>
+<button data-time="00:55-21:15">00:55-21:15</button>
+<button data-time="05:07-19:09">05:07-19:09</button>
+<button data-time="05:17-20:20">05:17-20:20</button>
+<button data-time="11:11-12:11">11:11-12:11</button>
+<button data-time="12:00-20:00">12:00-20:00</button>
+<button data-time="15:35-21:50">15:35-21:50</button>
+
+<script>
+    jQuery(function() {
+        var $targetSlider = $("#delivery-time-range");
+        var $targetTime = $("#delivery-time");
+        $targetSlider.slider({
+            range: true,
+            min: 0,
+            max: 1439,
+            values: [540, 1020],
+            step: 5,
+            slide: function (event, ui) {
+                var val0 = ui.values[0];
+                var val1 = ui.values[1];
+                slideTime(val0, val1);
+            }
+        });
+        var initialVal0 = $targetSlider.slider("values", 0);
+        var initialVal1 = $targetSlider.slider("values", 1);
+        slideTime(initialVal0, initialVal1);
+        function slideTime(val0, val1) {
+            var hours0 = Math.floor(val0 / 60);
+            var minutes0 = val0 - (hours0 * 60);
+            var hours1 = Math.floor(val1 / 60);
+            var minutes1 = val1 - (hours1 * 60);
+            var startTime = getTime(hours0, minutes0);
+            var endTime = getTime(hours1, minutes1);
+            $targetTime.find('div.left > span').text(startTime);
+            $targetTime.find('div.right > span').text(endTime);
+        }
+        function getTime(hours, minutes) {
+            var time = null;
+            minutes = minutes + '';
+            minutes = (minutes.length == 1) ? '0' + minutes : minutes;
+            return hours + ':' + minutes;
+        }
+        function resetTime(time) {
+            if (time) {
+                var values = time.split('-');
+                var startTime = values[0].split(':');
+                var endTime = values[1].split(':');
+                initialMinimumValue = parseInt((startTime[0] * 60)) + parseInt(startTime[1]);
+                initialMaximumValue = parseInt((endTime[0] * 60)) + parseInt(endTime[1]);
+            }
+            $targetSlider.slider("values", 0, initialMinimumValue);
+            $targetSlider.slider("values", 1, initialMaximumValue);
+            slideTime(initialMinimumValue, initialMaximumValue);
+        }
+        $('button').on('click', function(event) {
+            var time = $(this).data('time');
+            resetTime(time);
+        });
+    });
+</script>
+</body>
+</html>
