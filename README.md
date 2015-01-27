@@ -5,5 +5,6 @@
 
 `jquery.search.autocomplete.php` - Пример реализации живого поиска. Используется jQuery и jQuery UI.
 - - -
-`jquery.slider.24-hour-format.html` - Пример реализации слайдера времени в 24 часовом временном формате. Используется jQuery и jQuery UI.
+`jquery.slider.24-hour-format.html` - [Пример](http://jsfiddle.net/xse5xfn4/) реализации слайдера времени в 24 часовом временном формате. Используется jQuery и jQuery UI.
 - - -
+
