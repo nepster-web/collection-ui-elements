@@ -3,25 +3,25 @@ if (isset($_GET['term'])) {
     $result = [];
     $result[] = [
         'id' => 1,
-        'label' => "Телевизоры",
+        'name' => "Телевизоры",
         'desc' => "Категория телевизоров",
         'icon' => "images/items/1.jpg"
     ];
     $result[] = [
         'id' => 2,
-        'label' => "Кондиционеры",
+        'name' => "Кондиционеры",
         'desc' => "Категория кондиционеров",
         'icon' => "images/items/2.jpg"
     ];
     $result[] = [
         'id' => 3,
-        'label' => "Стиральные машины",
+        'name' => "Стиральные машины",
         'desc' => "Категория стиральных машин",
         'icon' => "images/items/3.jpg"
     ];
     $result[] = [
         'id' => 4,
-        'label' => "Компьютеры",
+        'name' => "Компьютеры",
         'desc' => "Категория компьютеров",
         'icon' => "images/items/4.jpg"
     ];
@@ -163,6 +163,10 @@ if (isset($_GET['term'])) {
                         response( data );
                     });
                 },
+                select: function(e, ui) {
+                    e.preventDefault()
+                    $(this).val(ui.item.name);
+                },
                 delay: 1000,
                 minLength: 2
             });
@@ -175,7 +179,7 @@ if (isset($_GET['term'])) {
                     ac._renderItem = function(ul, item) {
                         return $( "<li></li>" )
                             .data( "item.autocomplete", item )
-                            .append( '<table><tr><td rowspan="2" class="icon"><img src="' + item.icon + '" alt="" /></td><td class="label">' + item.label + '</td></tr><tr><td class="desc">' + item.desc + '</td></tr></table>' )
+                            .append( '<table><tr><td rowspan="2" class="icon"><img src="' + item.icon + '" alt="" /></td><td class="label">' + item.name + '</td></tr><tr><td class="desc">' + item.desc + '</td></tr></table>' )
                             .appendTo( ul );
                     };
                 }
