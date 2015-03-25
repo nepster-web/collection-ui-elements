@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQUERY Окна</title>
+    <meta charset="utf-8"/>
+    <script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="jquery/jquery-ui.min.css" type="text/css"/>
+
+
+    <style type="text/css">
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Обертка для модального окна */
+        .ui-modal-window {
+            background: rgba(0, 0, 0, 0.5);
+            display: block;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+            position: fixed;
+            overflow: auto;
+        }
+
+        .ui-dialog {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            box-shadow: 0px 3px 9px rgba(0, 0, 0, 0.5);
+            background-clip: padding-box;
+            border-radius: 5px;
+            padding: 0;
+            background-color: #FFF;
+        }
+
+        .ui-dialog .ui-dialog-title {
+            margin: 0.3em 0px;
+        }
+
+        .ui-dialog .ui-dialog-content {
+            margin: 0;
+            padding: 20px;
+        }
+
+        .ui-dialog .ui-widget-header {
+            border: none;
+        }
+
+        .ui-dialog-titlebar {
+            background: #428BCA;
+            padding: 10px;
+            border-bottom: 1px solid #E5E5E5;
+            color: #fff;
+            border-radius: 0;
+        }
+
+        .ui-dialog .ui-dialog-titlebar-close {
+            width: 15px;
+            height: 15px;
+            margin: -8px 10px 0 0;
+            border: none;
+            background: no-repeat center url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAADtSURBVHjajFC7DkFREJy9iXg0t+EHRKJDJSqRuIVaJT7AF+jR+xuNRiJyS8WlRaHWeOU+kBy7eyKhs8lkJrOzZ3OWzMAD15gxYhB+yzAm0ndez+eYMYLngdkIf2vpSYbCfsNkOx07n8kgWa1UpptNII5VR/M56Nyt6Qq33bbhQsHy6aR0WSyEyEmiCG6vR2ffB65X4HCwYC2e9CTjJGGok4/7Hcjl+ImLBWv1uCRDu3peV5eGQ2C5/P1zq4X9dGpXP+LYhmYz4HbDMQgUosWTnmQoKKf0htVKBZvtFsx6S9bm48ktaV3EXwd/CzAAVjt+gHT5me0AAAAASUVORK5CYII=');
+        }
+
+        .ui-dialog .ui-dialog-titlebar-close:hover {
+        }
+
+        .ui-dialog .ui-resizable-se {
+            display: block;
+            width: 10px;
+            height: 10px;
+            background: no-repeat url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAABHSURBVHjajM7RCQAgCATQo8Edyxl0qgv7CArqFAQPHipIQnVEcEBUZtLdITeZGWtuoSe8UeUWqtxCx+kf2lCh9WMHVZ4CDADj7xFC8l50hgAAAABJRU5ErkJggg==');
+            right: 0;
+            bottom: 0;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div style="position: absolute; top: 40%; left: 100px;">
+    <p><a href="#" class="modal">Модальное окно</a></p> <br/>
+
+    <p><a href="#" class="dialog">Диалоговое окно</a></p>
+</div>
+
+
+<div style="text-align: right">
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+    <p>Контент</p>
+</div>
+
+
+<div class="modal-window" title="Заголовок">
+    <span class="add" style="cursor: pointer">Добавить контент</span>
+    &nbsp;
+    <span class="rm" style="cursor: pointer">Удалить контент</span>
+    <br/><br/>
+
+    <div class="extra"></div>
+</div>
+
+
+<div class="dialog-window" title="Заголовок">
+    <span class="add" style="cursor: pointer">Добавить контент</span>
+    &nbsp;
+    <span class="rm" style="cursor: pointer">Удалить контент</span>
+    <br/><br/>
+
+    <div class="extra"></div>
+</div>
+
+
+<script type="text/javascript">
+
+    // Открыть модальное окно
+    $('.modal').on('click', function (event) {
+        $(".modal-window").dialog("open");
+        event.preventDefault();
+    });
+
+
+    // Открыть диалоговое окно
+    $('.dialog').on('click', function (event) {
+        $(".dialog-window").dialog("open");
+        event.preventDefault();
+    });
+
+
+    // Модальное окно
+    $(".modal-window").dialog({
+        width: 370,
+        height: 'auto',
+        resizable: false,
+        autoOpen: false,
+        modal: false, // Отключаем дефолтный overlay
+        draggable: false,
+        closeOnEscape: true,
+
+        open: function (event, ui) {
+            $('body').css('overflow', 'hidden');
+            var w = $(this).parent();
+            w.wrap("<div class='ui-modal-window'></div>");
+            w.find('.ui-dialog-titlebar-close').removeAttr('title');
+
+
+            centeringWindow();
+        },
+
+        close: function (event, ui) {
+            $('body').css('overflow', 'auto');
+            $(this).parents('.ui-modal-window').contents().unwrap();
+        }
+    });
+
+    // Центрирование окна
+    function centeringWindow() {
+
+        var $modal = $(".modal-window").parent();
+        var $window = $(window);
+
+        var wWidth = $window.width(),
+                wHeight = $window.height(),
+                mWidth = $modal.width(),
+                mHeight = $modal.height();
+
+        var $top = 0, $left = 0;
+
+        // Если высота рабочей области больше чем высота окна
+        if (wHeight > mHeight) {
+            $top = (wHeight / 2) - (mHeight / 2) + 'px';
+        }
+
+        // Если ширина рабочей области больше чем ширина окна
+        if (wWidth > mWidth) {
+            $left = (wWidth / 2) - (mWidth / 2) + 'px';
+        }
+
+        $modal.css({
+            top: $top,
+            left: $left
+        });
+    }
+
+    $(window).on("orientationchange", function (event) {
+        centeringWindow();
+    });
+
+    $(window).on("resize", function (event) {
+        centeringWindow();
+    });
+
+    $('.modal-window').on('DOMSubtreeModified', function (event) {
+        aside();
+    });
+
+    var timeout_id;
+
+    function aside() {
+        if (timeout_id) {
+            clearTimeout(timeout_id);
+        }
+        timeout_id = window.setTimeout(function () {
+            centeringWindow();
+        }, 0);
+    }
+
+    // Диалоговое окно
+    $(".dialog-window").dialog({
+        width: 370,
+        minWidth: 360,
+        maxWidth: 700,
+        maxHeight: 350,
+        height: 'auto',
+        resizable: true,
+        autoOpen: false,
+        modal: false, // Отключаем дефолтный overlay
+        draggable: true,
+        fluid: true,
+        closeOnEscape: false,
+        stack: true,
+        autoReposition: true, //This is the new autoReposition setting
+
+        open: function (event, ui) {
+        },
+
+        close: function (event, ui) {
+        }
+    });
+
+    // ----------------------------------------------------
+
+    // Добавить контент
+    $(document).on('click', '.add', function () {
+        $(this).parents('div').find('.extra').append('' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '<p>Содержимое окна</p>' +
+        '');
+        return false;
+    });
+
+
+    // Удалить контент
+    $(document).on('click', '.rm', function () {
+        $(this).parents('div').find('.extra').html('');
+        return false;
+    });
+
+
+    // Резервируем место под вертикальный scrollbar
+    (function (w, d) {
+        // ширина scrollbar
+        var scrollbar_width = 18;
+
+        var currentStyle = (d.body.currentStyle ? d.body.currentStyle : w.getComputedStyle(d.body, null));
+
+        // убрать margin справа
+        if (parseInt(currentStyle.marginRight) > 0) {
+            d.body.style.marginRight = 0;
+        }
+
+        var marginLeft = parseInt(currentStyle.marginLeft);
+        if (marginLeft > 0) {
+            scrollbar_width += marginLeft;
+        }
+
+        // выполняет код при изменении размеров окна
+        (d.body.onresize = function () {
+            d.body.style.width = (w.innerWidth - scrollbar_width) + 'px';
+        })(); // сразу же и выполнить его
+
+    })(window, document);
+
+
+</script>
+</body>
+</html>
