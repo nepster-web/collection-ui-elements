@@ -5,10 +5,9 @@
 
 `jquery.autocomplete.html` - Пример реализации живого поиска.
 - - -
-`jquery.slider.24-hour-format.html` - [Пример](http://jsfiddle.net/xse5xfn4/) реализации слайдера времени в 24 часовом временном формате.
+`jquery.slider.24-hour-format.html` - [Пример](http://jsfiddle.net/xse5xfn4/) Реализации слайдера времени в 24 часовом временном формате.
 - - -
 `jquery.selectmenu.html` - Кастомные стили для select.
 - - -
-`jquery.modal.html` - Модальные и диалоговые окна.
+`jquery.modal.html` - [Пример](http://jsfiddle.net/toju7a11/) Модальные и диалоговые окна.
 - - -
-
