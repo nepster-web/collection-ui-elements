@@ -29,3 +29,7 @@ if (isset($_GET['term'])) {
     echo json_encode($result);
     exit;
 }
+else if (isset($_GET['rand'])) {
+    echo rand(100000000, 999999999);
+    exit;
+}

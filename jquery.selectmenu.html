@@ -7,39 +7,50 @@
     <script type="text/javascript" src="jquery/jquery-ui.min.js"></script>
     <link rel="stylesheet" href="jquery/jquery-ui.min.css" type="text/css"/>
     <style type="text/css">
+
+        * {
+            -moz-box-sizing: border-box;
+            -ms-box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -khtml-box-sizing: border-box;
+            box-sizing: border-box;
+
+            outline: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-size: 14px;
+            font-family: verdana, arial, sans-serif;
+        }
+
         select {
             width: 100%;
         }
+
+        /*--------------------------------------------------*/
 
         .ui-widget {
             font-family: inherit;
         }
 
-        .ui-state-focus.ui-corner-top {
-            -moz-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            -ms-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            -o-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            -khtml-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-            box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-        }
-
-        .ui-widget-content {
+        .ui-selectmenu-button {
             color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.1);
+            background: #00c0f3;
+            border: solid 1px #0098bd;
         }
 
-        .ui-widget-content .ui-menu-item {
-            padding: 8px 5px;
+        .ui-selectmenu-button.ui-corner-all.ui-state-hover {
+            background: #0098bd;
         }
 
-        .ui-state-hover,
-        .ui-widget-content .ui-state-hover,
-        .ui-widget-header .ui-state-hover,
-        .ui-state-focus,
-        .ui-widget-content .ui-state-focus,
-        .ui-widget-header .ui-state-focus {
-            color: #ffffff;
-            font-weight: 400;
+        .ui-selectmenu-button.ui-corner-top {
+            background: #00c0f3;
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 5px 5px 0 0;
         }
 
         .ui-selectmenu-button span.ui-selectmenu-text {
@@ -50,12 +61,12 @@
             white-space: nowrap;
             vertical-align: middle;
             cursor: pointer;
-            font-size: 18px;
+            line-height: 1.42857143;
         }
 
-        .ui-selectmenu-button span.ui-icon {
-            width: 14px;
-            height: 8px;
+        .ui-selectmenu-button .ui-icon.ui-icon-triangle-1-s {
+            width: 15px;
+            height: 10px;
             right: 0.5em;
             left: auto;
             margin-top: -8px;
@@ -63,91 +74,80 @@
             top: 60%;
         }
 
-        .ui-state-default .ui-icon {
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAICAYAAAAiJnXPAAAACXBIWXMAAD2EAAA9hAHVrK90AAABOWlDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjarZGxSsNQFIa/G0XFoVYI4uBwJ1FQbNXBjElbiiBYq0OSrUlDldIk3NyqfQhHtw4u7j6Bk6PgoPgEvoHi1MEhSHASwW/6zs/hcOAHo2LXnYZRhkGsVbvpSNfz5ewTM0wBQCfMUrvVOgCIkzjiJwI+XxEAz5t23WnwN+bDVGlgAmx3oywEUQH6FzrVIMaAGfRTDeIOMNVJuwbiASj1cn8BSkHub0BJuZ4P4gMwe67ngzEHmEHuK4Cpo0sNUEvSkTrrnWpZtSxL2t0kiOTxKNPRIJP7cZioNFEdHXWB/D8AFvPFdtORa1XL2lvnn3E9X+b2foQAxNJjkRWEQ3X+3YWx8/tc3Bgvw+EtTE+KbPcKbjZg4brIVqtQ3oL78RfCs0/+HAmzJwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6AAAUggAARVYAAA6lwAAF2/XWh+QAAAAj0lEQVR42pTLPUpDYQBE0Zuk1EpwAf6tImlcppUEcQuWFpbiJtRO0sRCsDoWfsIjGMEpZ+bM0D8yq8yr4+qtuq8O/wCralOt59Vn9VFdVnd74GpsR9UmhBM8+84DDkYflngf2zUWTcZTvOzAJbajW2OBpiic4XWcHifg5gf8hsL5BMLtFOxD4QJPuNoF6GsA4XPkjuDQwfEAAAAASUVORK5CYII=');
+        .ui-selectmenu-button.ui-corner-all .ui-icon.ui-icon-triangle-1-s {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAICAYAAAAiJnXPAAAACXBIWXMAAD2EAAA9hAHVrK90AAABOWlDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjarZGxSsNQFIa/G0XFoVYI4uBwJ1FQbNXBjElbiiBYq0OSrUlDldIk3NyqfQhHtw4u7j6Bk6PgoPgEvoHi1MEhSHASwW/6zs/hcOAHo2LXnYZRhkGsVbvpSNfz5ewTM0wBQCfMUrvVOgCIkzjiJwI+XxEAz5t23WnwN+bDVGlgAmx3oywEUQH6FzrVIMaAGfRTDeIOMNVJuwbiASj1cn8BSkHub0BJuZ4P4gMwe67ngzEHmEHuK4Cpo0sNUEvSkTrrnWpZtSxL2t0kiOTxKNPRIJP7cZioNFEdHXWB/D8AFvPFdtORa1XL2lvnn3E9X+b2foQAxNJjkRWEQ3X+3YWx8/tc3Bgvw+EtTE+KbPcKbjZg4brIVqtQ3oL78RfCs0/+HAmzJwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6AAAUggAARVYAAA6lwAAF2/XWh+QAAAAj0lEQVR42pTLPUpDYQBE0Zuk1EpwAf6tImlcppUEcQuWFpbiJtRO0sRCsDoWfsIjGMEpZ+bM0D8yq8yr4+qtuq8O/wCralOt59Vn9VFdVnd74GpsR9UmhBM8+84DDkYflngf2zUWTcZTvOzAJbajW2OBpiic4XWcHifg5gf8hsL5BMLtFOxD4QJPuNoF6GsA4XPkjuDQwfEAAAAASUVORK5CYII=');
         }
 
-        .ui-state-default.ui-corner-top .ui-icon {
-            background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAICAYAAAAiJnXPAAAACXBIWXMAAD2EAAA9hAHVrK90AAABOWlDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjarZGxSsNQFIa/G0XFoVYI4uBwJ1FQbNXBjElbiiBYq0OSrUlDldIk3NyqfQhHtw4u7j6Bk6PgoPgEvoHi1MEhSHASwW/6zs/hcOAHo2LXnYZRhkGsVbvpSNfz5ewTM0wBQCfMUrvVOgCIkzjiJwI+XxEAz5t23WnwN+bDVGlgAmx3oywEUQH6FzrVIMaAGfRTDeIOMNVJuwbiASj1cn8BSkHub0BJuZ4P4gMwe67ngzEHmEHuK4Cpo0sNUEvSkTrrnWpZtSxL2t0kiOTxKNPRIJP7cZioNFEdHXWB/D8AFvPFdtORa1XL2lvnn3E9X+b2foQAxNJjkRWEQ3X+3YWx8/tc3Bgvw+EtTE+KbPcKbjZg4brIVqtQ3oL78RfCs0/+HAmzJwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6AAAUggAARVYAAA6lwAAF2/XWh+QAAAAiElEQVR42ozPPw5BQRAH4HleSXQOgHAJrqjXiXAOhVLiDv5VEgUH8CnsSzayxC/ZZDOz32QnEB+nhTn2GBf6UQJrPL1zwegXqrFKj+/YpfsZwxKqsczABG1sU+2EQY5qLFLzkUAzLIdH9Bs0y8C0sHgngwd0I33r9gXkcIMrehUiIqqIEH/mNQBmgjLekuQyBgAAAABJRU5ErkJggg==');
+        .ui-selectmenu-button.ui-corner-top .ui-icon.ui-icon-triangle-1-s {
+            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA0AAAAICAYAAAAiJnXPAAAACXBIWXMAAD2EAAA9hAHVrK90AAABOWlDQ1BQaG90b3Nob3AgSUNDIHByb2ZpbGUAAHjarZGxSsNQFIa/G0XFoVYI4uBwJ1FQbNXBjElbiiBYq0OSrUlDldIk3NyqfQhHtw4u7j6Bk6PgoPgEvoHi1MEhSHASwW/6zs/hcOAHo2LXnYZRhkGsVbvpSNfz5ewTM0wBQCfMUrvVOgCIkzjiJwI+XxEAz5t23WnwN+bDVGlgAmx3oywEUQH6FzrVIMaAGfRTDeIOMNVJuwbiASj1cn8BSkHub0BJuZ4P4gMwe67ngzEHmEHuK4Cpo0sNUEvSkTrrnWpZtSxL2t0kiOTxKNPRIJP7cZioNFEdHXWB/D8AFvPFdtORa1XL2lvnn3E9X+b2foQAxNJjkRWEQ3X+3YWx8/tc3Bgvw+EtTE+KbPcKbjZg4brIVqtQ3oL78RfCs0/+HAmzJwAAACBjSFJNAAB6JQAAgIMAAPn/AACA6AAAUggAARVYAAA6lwAAF2/XWh+QAAAAiElEQVR42ozPPw5BQRAH4HleSXQOgHAJrqjXiXAOhVLiDv5VEgUH8CnsSzayxC/ZZDOz32QnEB+nhTn2GBf6UQJrPL1zwegXqrFKj+/YpfsZwxKqsczABG1sU+2EQY5qLFLzkUAzLIdH9Bs0y8C0sHgngwd0I33r9gXkcIMrehUiIqqIEH/mNQBmgjLekuQyBgAAAABJRU5ErkJggg==');
         }
 
-        .ui-icon-triangle-1-s {
-            background-position: 0 0;
+        .ui-selectmenu-menu .ui-menu {
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-bottom: 1px;
+            max-height: 350px;
+            border: solid 1px #0098bd;
+            margin: -1px 0;
         }
 
-        .ui-state-default,
-        .ui-widget-content .ui-state-default,
-        .ui-widget-header .ui-state-default {
-            -moz-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
-            -webkit-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
-            -ms-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
-            -o-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
-            -khtml-box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
-            box-shadow: 3px 7px 10px -3px rgba(0, 0, 0, 0.35);
+        .ui-selectmenu-menu.ui-selectmenu-open {
+            background: #00c0f3;
+            color: #ffffff;
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+        }
+
+        .ui-selectmenu-menu .ui-menu-item {
+            padding: 12px 5px;
+            border: solid 1px #0098bd;
+            margin: -1px;
+        }
+
+        .ui-selectmenu-menu .ui-menu-item.ui-state-focus {
+            background: #0098bd;
+        }
+
+        /* Другая тема */
+        /*--------------------------------------------------*/
+
+        .orange .ui-selectmenu-button {
+            color: #ffffff;
+            background: #f4ad49;
+            border: solid 1px #f1a73f;
+        }
+
+        .orange .ui-selectmenu-button.ui-corner-all.ui-state-hover {
+            background: #f1a73f;
+        }
+
+        .orange .ui-selectmenu-button.ui-corner-top {
+            background: #f4ad49;
+        }
+
+        .orange.ui-selectmenu-menu .ui-menu {
+            border: solid 1px #f1a73f;
+        }
+
+        .orange.ui-selectmenu-menu.ui-selectmenu-open {
+            background: #f4ad49;
             color: #ffffff;
         }
 
-        /*--------------------------------------------------*/
-
-        .primary .ui-state-focus.ui-corner-top {
-            border: solid 1px #0098bd;
+        .orange.ui-selectmenu-menu .ui-menu-item {
+            border: solid 1px #f1a73f;
         }
 
-        .primary .ui-widget-content {
-            border: solid 1px #0098bd;
-            background: #00c0f3;
-        }
-
-        .primary .ui-state-default,
-        .primary .ui-widget-content .ui-state-default,
-        .primary .ui-widget-header .ui-state-default {
-            background: #00c0f3;
-            border: solid 1px #0098bd;
-        }
-
-        .primary .ui-state-hover,
-        .primary .ui-widget-content .ui-state-hover,
-        .primary .ui-widget-header .ui-state-hover,
-        .primary .ui-state-focus,
-        .primary .ui-widget-content .ui-state-focus,
-        .primary .ui-widget-header .ui-state-focus {
-            background: #00b7db;
-            border: solid 1px #0098bd;
-        }
-
-        .orange .ui-state-focus.ui-corner-top {
-            border: solid 1px #f4ad49;
-        }
-
-        .orange .ui-widget-content {
-            border: solid 1px #f4ad49;
-            background: #f4ad49;
-        }
-
-        .orange .ui-state-default,
-        .orange .ui-widget-content .ui-state-default,
-        .orange .ui-widget-header .ui-state-default {
-            background: #f4ad49;
-            border: solid 1px #f4ad49;
-        }
-
-        .orange .ui-state-hover,
-        .orange .ui-widget-content .ui-state-hover,
-        .orange .ui-widget-header .ui-state-hover,
-        .orange .ui-state-focus,
-        .orange .ui-widget-content .ui-state-focus,
-        .orange .ui-widget-header .ui-state-focus {
+        .orange.ui-selectmenu-menu .ui-menu-item.ui-state-focus {
             background: #f1a73f;
-            border: solid 1px #f4ad49;
         }
-
     </style>
 </head>
 <body>
 
 
-<div class="primary" style="width: 200px; padding: 25px;">
-    <select name="type" data-style="primary">
+<div class="primary" style="width: 220px; padding: 25px;">
+    <select name="type1" data-style="primary">
         <option>Пункт 1</option>
         <option>Пункт 2</option>
         <option>Пункт 3</option>
@@ -155,8 +155,8 @@
 </div>
 
 
-<div class="orange" style="width: 200px; padding: 25px;">
-    <select name="type" data-style="orange">
+<div class="orange" style="width: 220px; padding: 25px;">
+    <select name="type2" data-style="orange">
         <option>Пункт 1</option>
         <option>Пункт 2</option>
         <option>Пункт 3</option>
@@ -166,10 +166,12 @@
 
 <script>
     jQuery(function () {
-        // Селекты
-        $("select").selectmenu();
 
-        var selects = $('select'), ln = selects.length;
+        var selects = $('select'),
+                ln = selects.length;
+
+        // Селекты
+        selects.selectmenu();
 
         for (var i = 0; i < ln; i++) {
             var loc = $(selects[i]), tmenu;
